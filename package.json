@@ -18,6 +18,8 @@
     "preact": "^7.1.0",
     "preact-compat": "^3.13.1",
     "react": "^15.4.2",
-    "react-helmet": "^4.0.0"
+    "react-helmet": "^4.0.0",
+    "underscore": "^1.9.1",
+    "wordnet": "^0.1.2"
   }
 }
