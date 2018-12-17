@@ -1,5 +1,7 @@
-this is a game to guess what ingredents the food in the image use
+update:
+add general, food, color module
+play six times, ask whether want to see original photo, and whether want to play agian.
 
-python2.7 (sorry i have never used javascript)
-
-more images and response should be added.
+bug:
+one input one module. ingredents can not be found in general module. if input pepper, pepper is in food module, but can't be recognized because I can not put everything in wit.ai
+color problem

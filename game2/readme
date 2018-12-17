@@ -1,7 +1,0 @@
-update:
-add general, food, color module
-play six times, ask whether want to see original photo, and whether want to play agian.
-
-bug:
-one input one module. ingredents can not be found in general module. if input pepper, pepper is in food module, but can't be recognized because I can not put everything in wit.ai
-color problem

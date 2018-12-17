@@ -1,0 +1,39 @@
+{
+  "name": "universal-react-tutorial",
+  "version": "0.0.0",
+  "description": "A tutorial on building a universal React web application.",
+  "author": "Mark <mark@remarkablemark.org>",
+  "scripts": {
+    "start": "webpack && node src/index.js",
+    "dev": "npm-run-all --parallel watch:*",
+    "watch:webpack": "webpack -w",
+    "watch:server": "nodemon --ext js,jsx --ignore public/ src/index.js"
+  },
+  "main": "server.js",
+  "keywords": [
+    "universal",
+    "isomorphic",
+    "react",
+    "tutorial"
+  ],
+  "dependencies": {
+    "babel-core": "^6.9.0",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.24.0",
+    "babel-preset-react": "^6.5.0",
+    "babel-register": "^6.9.0",
+    "express": "^4.13.4",
+    "react": "^15.0.2",
+    "react-dom": "^15.0.2",
+    "react-redux": "^4.4.6",
+    "react-router": "^2.8.1",
+    "redux": "^3.6.0",
+    "webpack": "^1.13.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0",
+    "npm-run-all": "^3.1.2"
+  },
+  "private": true,
+  "license": "MIT"
+}

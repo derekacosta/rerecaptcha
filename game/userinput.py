@@ -1,8 +1,21 @@
 import sys
 import re
 import imageclarify as im
-
+from wit import Wit
 position = []
+
+def witprocess(input):
+    client = Wit(access_token='WW2J4SJKFGPZ5ASMTUMLDW3IT5STJWON')
+    resp = client.message(input)
+    dic = resp['entities']
+    modulename = list(dic.keys())
+    if  len(modulename) == 0:
+        module = 'general'
+    else:
+        module = modulename
+    return module
+    #print modulename[0]
+    #print resp['entities']
 
 def processinput(input):
     input = re.sub('[^\w ]','',input)
@@ -31,15 +44,22 @@ def findingredent(out,name):
     #print position
     return position
 
+def getinput():
+    input = sys.stdin.readline().strip('\n').lower()
+    return input
+
 def getposition():
     return position
 '''
 if __name__ == '__main__':
     input = sys.stdin.readline().strip('\n')
+    module = witprocess(input)
+    print module
+    ''''''
     out = processinput(input)
     print out
     position = findingredent(out)
     print "print result"
     for i in position:
         print im.namelist[i]
-'''
+    '''

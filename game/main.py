@@ -4,32 +4,77 @@ import systempoutput as so
 from clarifai.rest import ClarifaiApp
 from clarifai.rest import Image as ClImage
 import sys
+import os
+import random
 app = ClarifaiApp(api_key = 'b9004e37bd6143c1b2d3d70a056bd80d')
 
-name = []
-value = []
+
+
+def importfiles(dictionary):
+    list=[]
+    path = os.listdir(dictionary)
+    for file in path:
+        if file.endswith(".jpg"):
+            list.append(file)
+    return list
+
 if __name__ == '__main__':
-    model = app.models.get('food-items-v1.0')
-    path = 'beef.jpg'
-    #image = ClImage(url = 'https://samples.clarifai.com/food.jpg')
-    image = ClImage(file_obj = open(path,'rb'))
-    #im.load_image(path)
-    response = model.predict([image])
-    name = im.getname(response)
-    #print type(response)
-    #input = Ingredent(outputs = response["outputs"])
-    #print input.getdata().getdata().getdata().getname()
-    #print name
-    value = im.getvalue(response)
-    #print value
 
-    print "Guess the ingredents!"
-    input = sys.stdin.readline().strip('\n').lower()
-    out = ui.processinput(input)
-    #print out
+    print("Guess what is in the photo!")
+    print("Try to point out more than 7 concepts within 10 times!")
+    i = 0
+    again = True
+    while again == True:
 
-    position = ui.findingredent(out, name)
-    #for i in position:
-        #print name[i]
+        image, path = im.random_show()
+        count = 0
+        #print path
+        state = True
+        while state == True:
+            name = []
+            value = []
+            #user input
+            input = ui.getinput()
+            module = ui.witprocess(input)
+            model = im.loadmodule(app, module)
 
-    so.output(name, value, position)
+            #  get name and value
+            response = model.predict([image])
+            if module == 'color':
+                name = im.getcolor(response)
+                #print name
+                value = im.getcolorvalue(response)
+            else:
+                name = im.getname(response)
+                #print type(response)
+                #print name
+                value = im.getvalue(response)
+                if input == "show":
+                    print(name)
+                    print(value)
+                #print name
+                #print value
+                #print module
+            out = ui.processinput(input)
+            #print out
+            position = ui.findingredent(out, name)
+            count = count + len(position)
+            #print name[i]
+            so.channel(name, value, position, module)
+            #state = False
+            i = i + 1
+            if i == 6:
+                if count > 3:
+                    print("Congratuation! You have got " + count+ " things correct! You win!")
+                else:
+                    print("Sorry~ you have lose...")
+                i = 0
+                print("Do you want to see the original photo?(yes/no)")
+                choice = sys.stdin.readline().strip('\n').lower()
+                state = so.judge(choice, path)
+                if state == False:
+                    im.load_origin(path)
+        print("Do you want to play one more time?(yes/no)")
+        choice =  sys.stdin.readline().strip('\n').lower()
+        again = so.judge2(choice)
+
