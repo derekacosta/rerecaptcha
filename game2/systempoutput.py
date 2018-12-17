@@ -36,7 +36,7 @@ def output(name, value, position):
             print ingredent + " could be there, the possibility is " + p+ '% '
         else:
             p = str(value[pos] * 100)
-            print "You are correct!, " + ingredent+ "has " + p+'% possibility to be there.'
+            print "You are correct!, " + ingredent+ " has " + p+'% possibility to be there.'
         i = i + 1
 
 def judge(choice, path):
